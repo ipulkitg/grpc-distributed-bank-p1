@@ -9,9 +9,21 @@ the updates made by the customer.
 ## Objectives
 ● Define a service in a .proto file.
 ● Generate server and client code using the protocol buffer compiler.
-● Use the Python gRPC API to write a simple client and server for your service. ● Build a distributed system that meets specific criteria.
+● Use the Python gRPC API to write a simple client and server for your service. 
+● Build a distributed system that meets specific criteria.
 ● Determine the problem statement.
 ● Identify the goal of the problem statement.
 ● List relevant technologies for the setup and their versions.
 ● Explain the implementation processes.
 ● Explain implementation results.
+
+Relevant Technologies used in the setup are :
+S.No    Name
+1       Python (3.9)
+2       JSON
+3       Multiprocessing
+4       Grpcio (1.59)
+5       Grpcio-tools (1.59)
+6       Protobuf (4.24.4)
+7       Future (0.18.3)
+
