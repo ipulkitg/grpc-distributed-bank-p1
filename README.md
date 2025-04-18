@@ -58,24 +58,6 @@ Build a distributed system where:
 
 ---
 
-## 📂 Project Structure
-
-```
-.
-├── Branch.py                     # Handles branch logic and propagation
-├── Customer.py                   # Executes customer events and initiates RPCs
-├── LICENSE                       # License file
-├── README.md                     # Project documentation
-├── example.proto                 # Protocol Buffers definition for gRPC services
-├── example_pb2.py                # Generated Python code from .proto
-├── example_pb2_grpc.py           # Generated gRPC Python code from .proto
-├── input.json                    # Input file containing customer/branch data and events
-├── main.py                       # Main entry point to launch processes
-├── output.txt                    # Output result file with responses
-```
-
----
-
 ## 🔧 How to Run
 
 ### 1. Install Dependencies
