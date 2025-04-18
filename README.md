@@ -1,5 +1,5 @@
 
-# 🏦 Distributed Banking System using gRPC
+# 🏦 Distributed Banking System using gRPC - Part 1
 
 ## Overview
 
