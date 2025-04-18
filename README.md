@@ -62,13 +62,16 @@ Build a distributed system where:
 
 ```
 .
-├── customer.py               # Handles customer event processing
-├── branch.py                 # Handles requests and inter-branch updates
-├── bank.proto                # gRPC service definitions
-├── main.py                   # Launches and coordinates all processes
-├── input.json                # Input file specifying customers and branches
-├── output.json               # Output file with customer responses
-└── README.md                 # Project documentation
+├── Branch.py                     # Handles branch logic and propagation
+├── Customer.py                   # Executes customer events and initiates RPCs
+├── LICENSE                       # License file
+├── README.md                     # Project documentation
+├── example.proto                 # Protocol Buffers definition for gRPC services
+├── example_pb2.py                # Generated Python code from .proto
+├── example_pb2_grpc.py           # Generated gRPC Python code from .proto
+├── input.json                    # Input file containing customer/branch data and events
+├── main.py                       # Main entry point to launch processes
+├── output.txt                    # Output result file with responses
 ```
 
 ---
