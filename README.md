@@ -111,17 +111,3 @@ python main.py input.json
 - ✅ Fully testable with structured JSON input/output
 
 ---
-
-## 📜 Acknowledgements
-
-This project was developed as part of the **CSE 531** course at **Arizona State University**, inspired by real-world distributed system challenges.
-
----
-
-## 📬 Contact
-
-Pulkit Garg  
-Graduate Student, Computer Science  
-Arizona State University  
-📧 [pgarg27@asu.edu](mailto:pgarg27@asu.edu)  
-🔗 [LinkedIn](https://www.linkedin.com/in/pulkitgarg27)
