@@ -1,29 +1,142 @@
-# Distributed-Banking-System
-## Problem Statement
-To enable secure deposit and withdrawal transactions across multiple branches, ensuring synchronized and consistent data replication while maintaining customer- specific branch interactions.
 
-## Goal
-The goal of this project is to build a distributed banking system that allows multiple customers to withdraw or deposit money from multiple branches in the bank. We assume that all the customers share the same bank account and each customer accesses only one specific branch. In this project, we also assume that there are no concurrent updates on the bank account. Each branch maintains a replica of the money that needs to be consistent with the replicas in other branches. The customer communicates with only a specific branch that has the same unique ID as the customer. Although each customer independently updates a specific replica, the replicas stored in each branch need to reflect all
-the updates made by the customer.
+# 🏦 Distributed Banking System using gRPC
 
-## Objectives
-● Define a service in a .proto file.
-● Generate server and client code using the protocol buffer compiler.
-● Use the Python gRPC API to write a simple client and server for your service. 
-● Build a distributed system that meets specific criteria.
-● Determine the problem statement.
-● Identify the goal of the problem statement.
-● List relevant technologies for the setup and their versions.
-● Explain the implementation processes.
-● Explain implementation results.
+## Overview
 
-Relevant Technologies used in the setup are :
-S.No    Name
-1       Python (3.9)
-2       JSON
-3       Multiprocessing
-4       Grpcio (1.59)
-5       Grpcio-tools (1.59)
-6       Protobuf (4.24.4)
-7       Future (0.18.3)
+This project implements a **distributed banking system** using **gRPC and Python**, designed for the CSE 531 Distributed and Multiprocessor Operating Systems course. The system simulates a set of customers interacting with branches of a bank, all sharing the same account. Although customers interact with specific branches, all branches maintain consistent replicas of the account balance through internal propagation of operations.
 
+---
+
+## 🧩 Problem Statement
+
+Build a distributed system where:
+- Multiple **customers** interact with different **branches**
+- All customers share the **same bank account**
+- Each branch maintains a **replicated balance**
+- Updates must be **consistent** across all branches
+- Communication is implemented via **gRPC**
+
+---
+
+## 🎯 Project Objectives
+
+- Define and implement gRPC services for `Query`, `Deposit`, `Withdraw`, `Propagate_Deposit`, and `Propagate_Withdraw`
+- Use **Protocol Buffers** (`.proto`) for service definitions
+- Implement customer and branch processes using **Python and gRPC**
+- Ensure branch replication consistency after every transaction
+- Parse input JSON and output results in the specified format
+
+---
+
+## 💻 Technologies Used
+
+| Technology     | Version    |
+|----------------|------------|
+| Python         | 3.8+       |
+| gRPC           | Latest     |
+| Protocol Buffers | 3.x      |
+| JSON           | Standard Python Lib |
+
+---
+
+## 🧠 System Design
+
+### Architecture
+- Each **Customer** is linked to a **Branch** via gRPC
+- Branches internally propagate updates to all other branches
+- All branches maintain a consistent replica of the account balance
+
+### Interfaces
+#### Customer ↔ Branch
+- `Query`: Returns current balance
+- `Deposit`: Adds funds and propagates to others
+- `Withdraw`: Deducts funds and propagates to others
+
+#### Branch ↔ Branch
+- `Propagate_Deposit`: Replica update for deposits
+- `Propagate_Withdraw`: Replica update for withdrawals
+
+---
+
+## 📂 Project Structure
+
+```
+.
+├── customer.py               # Handles customer event processing
+├── branch.py                 # Handles requests and inter-branch updates
+├── bank.proto                # gRPC service definitions
+├── main.py                   # Launches and coordinates all processes
+├── input.json                # Input file specifying customers and branches
+├── output.json               # Output file with customer responses
+└── README.md                 # Project documentation
+```
+
+---
+
+## 🔧 How to Run
+
+### 1. Install Dependencies
+```bash
+pip install grpcio grpcio-tools
+```
+
+### 2. Generate gRPC Code
+```bash
+python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. bank.proto
+```
+
+### 3. Run the Project
+```bash
+python main.py input.json
+```
+
+### 4. Sample Input
+```json
+[
+  {
+    "id": 1,
+    "type": "customer",
+    "events": [{ "id": 1, "interface": "query" }]
+  },
+  {
+    "id": 1,
+    "type": "branch",
+    "balance": 400
+  }
+]
+```
+
+### 5. Sample Output
+```json
+[
+  {
+    "id": 1,
+    "recv": [{ "interface": "query", "result": { "balance": 400 } }]
+  }
+]
+```
+
+---
+
+## 🧪 Features Implemented
+
+- ✅ Synchronous request handling via gRPC
+- ✅ Branch consistency using replication via `Propagate_*` interfaces
+- ✅ Sequential event execution with controlled delay
+- ✅ Fully testable with structured JSON input/output
+
+---
+
+## 📜 Acknowledgements
+
+This project was developed as part of the **CSE 531** course at **Arizona State University**, inspired by real-world distributed system challenges.
+
+---
+
+## 📬 Contact
+
+Pulkit Garg  
+Graduate Student, Computer Science  
+Arizona State University  
+📧 [pgarg27@asu.edu](mailto:pgarg27@asu.edu)  
+🔗 [LinkedIn](https://www.linkedin.com/in/pulkitgarg27)
